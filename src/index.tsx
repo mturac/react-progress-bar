@@ -24,6 +24,8 @@ export type ProgressBarProps = {
   className?: string;
 };
 
+const minValue = 5;
+
 const ProgressBar: React.FC<ProgressBarProps> = ({
   bgColor,
   completed,
@@ -68,7 +70,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
 
   const fillerStyles: React.CSSProperties = {
     height: height,
-    width: Number(completed) > 100 ? `100%` : `${Number(completed)}%`,
+    width: Number(completed) > 100 ? `100%` : `${Number(completed < minValue ? minValue : completed)}%`,
     backgroundColor: bgColor,
     transition: `width ${transitionDuration || "1s"} ${
       transitionTimingFunction || "ease-in-out"
